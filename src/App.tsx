@@ -10,7 +10,7 @@ function App() {
   const [dots, setDots] = useState<Dots[]>([]);
   const [historyDots, setHistoryDots] = useState<Dots[]>([]);
 
-  const quandoUsuarioClica = (event: MouseEvent<HTMLElement>) => {
+  const handleUserDoDots = (event: MouseEvent<HTMLElement>) => {
     const { clientX, clientY } = event;
     const newDots = {
       top: clientY,
@@ -20,7 +20,7 @@ function App() {
     setHistoryDots([...dots, newDots]);
   };
 
-  const handleUserDoDots = (event: MouseEvent<HTMLButtonElement>) => {
+  const handleUserDoUndo = (event: MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
     event.preventDefault();
 
@@ -31,7 +31,7 @@ function App() {
     setDots(dots.slice(0, -1));
   };
 
-  const handleUserUndo = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleUserRedo = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
     event.preventDefault();
 
@@ -49,9 +49,9 @@ function App() {
   };
 
   return (
-    <div className="app" onClick={quandoUsuarioClica}>
-      <button onClick={handleUserDoDots}>Desfazer</button>
-      <button onClick={handleUserUndo}>Refazer</button>
+    <div className="app" onClick={handleUserDoDots}>
+      <button onClick={handleUserDoUndo}>Desfazer</button>
+      <button onClick={handleUserRedo}>Refazer</button>
 
       {dots.map((dot) => (
         <div key={Math.random() * 10000} className="dot" style={dot}></div>
