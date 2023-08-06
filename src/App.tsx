@@ -20,7 +20,7 @@ function App() {
     setHistoryDots([...dots, newDots]);
   };
 
-  const clicaDesfazerDots = (event: MouseEvent<HTMLButtonElement>) => {
+  const handleUserDoDots = (event: MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
     event.preventDefault();
 
@@ -31,7 +31,7 @@ function App() {
     setDots(dots.slice(0, -1));
   };
 
-  const clidaRefazerDots = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleUserUndo = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
     event.preventDefault();
 
@@ -50,8 +50,8 @@ function App() {
 
   return (
     <div className="app" onClick={quandoUsuarioClica}>
-      <button onClick={clicaDesfazerDots}>Desfazer</button>
-      <button onClick={clidaRefazerDots}>Refazer</button>
+      <button onClick={handleUserDoDots}>Desfazer</button>
+      <button onClick={handleUserUndo}>Refazer</button>
 
       {dots.map((dot) => (
         <div key={Math.random() * 10000} className="dot" style={dot}></div>
